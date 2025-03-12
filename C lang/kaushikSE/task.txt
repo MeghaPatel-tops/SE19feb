@@ -1,0 +1,19 @@
+1.check two num are postive 
+2.check given number are equal or not
+3.max of 3 num uisng nested if
+4. press 1 for area of circle
+   press 2 for area of square & rectangle
+   press 3 for simple intrest
+   
+   using switch
+ 5.get 5 subject marks print total & avg of result
+ 	determind grad
+	 A+ = range 90 >=
+	 A = range 75 to 90
+	  B+=  65 to 75
+	  B = 55 to 45
+	  fail 45 less
+	  
+	  hint
+	  if(avg > 90) 
+	  else if(age < 90 && age >=75)
