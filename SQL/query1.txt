@@ -1,0 +1,43 @@
+=================DDL - Data Definition Language======================
+Create:=>
+
+CREATE DATABASE feb19se
+
+CREATE TABLE students (studentId int PRIMARY KEY AUTO_INCREMENT,studentName varchar(30), 
+email varchar(50),contact int,address varchar(100))
+
+
+Alter:=>
+ALTER TABLE students add COLUMN age int
+
+ALTER TABLE students DROP COLUMN address
+
+ALTER TABLE students CHANGE COLUMN contact phono varchar(20)
+
+Drop:=>
+DROP TABLE students
+
+DROP DATABASE feb19se
+
+===============� DML � Data Manipulation Language===========================
+Insert:=>
+INSERT INTO students(studentName,email,contact,address)VALUES("Kamini","kamini@gmail.com",78787877
+                                                              ,"102 main street surat");
+                                                    
+INSERT INTO students VALUES("Tanvi","Tanvi@gmail.com",78787877,"103 main street surat");   
+
+
+
+Update:=>
+UPDATE students SET address="105 main street varacha" where studentId=2
+
+
+Delete:=>
+DELETE FROM students WHERE studentId=2   
+
+
+==========================
+CREATE TABLE cources (cid int PRIMARY KEY AUTO_INCREMENT,sid int ,cname varchar(100),duration varchar(100),fees float,FOREIGN KEY(sid) REFERENCES students(studentId))
+
+INSERT into cources(sid,cname,duration,fees)VALUES(1,"Java","8 Month",100000)   
+

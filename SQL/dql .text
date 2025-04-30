@@ -1,0 +1,68 @@
+SELECT * FROM employee;
+
+
+SELECT DISTINCT(user_id) from cart_items
+
+SELECT * FROM `employee` where empid=1;
+
+SELECT * FROM products where name = "Laptop"
+
+SELECT DISTINCT(name) as ProductName FROM `products` WHERE 1
+
+SELECT * FROM `employee` ORDER BY empname ASC 
+
+
+SELECT * FROM `products` WHERE price > 100 AND stock>50
+
+SELECT * FROM `products` WHERE price > 600 OR stock >140
+
+SELECT * FROM `customer` WHERE not CUST_CITY="New York" 
+
+=================30-4-2025==============================
+
+SELECT  * FROM `employee` WHERE empid LIMIT 0,3;
+
+SELECT  * FROM `employee` WHERE empid LIMIT 2,3;
+
+SELECT sum(salary) as TotalSalary FROM `employee` WHERE 1
+
+SELECT avg(salary) as AvrageOfSalary FROM `employee` WHERE 1;
+
+SELECT min(salary) as MinSalary FROM `employee` WHERE 1;
+
+SELECT max(salary) as MaxSalary FROM `employee`;
+
+SELECT count(empid) as TotalEmployee FROM `employee`;
+
+SELECT * FROM `employee` WHERE empname LIKE 'k%';//start
+
+SELECT * FROM `employee` WHERE empname LIKE '%i';//end
+
+SELECT * FROM `employee` WHERE empname LIKE '%a%';//in between
+
+SELECT * FROM `products` WHERE id IN(1,2,3)
+
+SELECT * FROM `products` WHERE id NOT IN(1,2,3)
+
+SELECT * FROM `customer` WHERE CUST_CITY IN ("Mumbai","London");
+
+SELECT * FROM `customer` WHERE CUST_CITY IN ("Mumbai","London") and CUST_NAME LIKE 's%';
+
+SELECT * FROM `employee` WHERE salary BETWEEN 70000 AND 80000
+
+SELECT * FROM `cources` join students on cources.sid = students.studentId;
+
+SELECT * FROM `cart_items` join products on cart_items.product_id= products.id;
+
+SELECT * FROM `cart_items` left  join products on cart_items.product_id= products.id;
+
+SELECT * FROM `cart_items` RIGHT  join products on cart_items.product_id= products.id;
+
+SELECT count(CUST_CODE) as total_cust,CUST_CITY FROM `customer` GROUP BY CUST_CITY;
+
+SELECT sum(OPENING_AMT) as total_amt,CUST_CITY FROM `customer` GROUP BY CUST_CITY;
+
+
+SELECT sum(OPENING_AMT) as total_amt,CUST_CITY FROM `customer` GROUP BY CUST_CITY HAVING  total_amt>7000;
+
+SELECT sum(OPENING_AMT) as totalsalary FROM `customer` where CUST_CITY ="Mumbai" GROUP BY CUST_CITY;

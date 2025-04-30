@@ -1,0 +1,29 @@
+employee empid,empname,salary, joindate;
+
+CREATE TABLE Employee (empid int PRIMARY KEY AUTO_INCREMENT,empname varchar(100),salary int,joindate date)
+
+INSERT into employee(empname,salary,joindate)VALUES("krunal",80000,"2021-01-01"),
+("Kamini",85000,"2018-01-01"),
+("Hardik",81000,"2019-01-01"),
+("Kaushik",70000,"2018-01-01"),
+("Ganesh",75000,"2018-01-01");
+
+project:pid pname duration 
+
+CREATE TABLE project (pid int PRIMARY KEY AUTO_INCREMENT,pname varchar(100),duration varchar(100));
+
+INSERT into project(pname,duration)VALUES("CRM","1 Month"),
+("ERP","10 month"),
+("AI tool","1 year"),
+("Ecom","1 year"),
+("Chat APP","1 month");
+
+project_emp
+pid,empid,aasign date
+
+CREATE table emp_project(epid int PRIMARY KEY AUTO_INCREMENT,empid int, pid int ,assigndate date ,FOREIGN KEY(empid) REFERENCES employee(empid), FOREIGN KEY(pid) REFERENCES project(pid) );
+
+INSERT INTO `emp_project` (`epid`, `empid`, `pid`, `assigndate`) VALUES (NULL, '2', '1', '2025-02-04');
+
+
+
