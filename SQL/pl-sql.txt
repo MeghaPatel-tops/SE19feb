@@ -1,0 +1,147 @@
+DECLARE
+  message varchar2(100):= 'Hello, World!'; 
+  num int := 100;
+BEGIN 
+  dbms_output.put_line(message); 
+  dbms_output.put_line(num); 
+END;
+/
+
+DECLARE
+  message varchar2(100):= 'Hello, World!'; 
+   num constant int := 100;
+BEGIN 
+num:=200;
+  dbms_output.put_line(message); 
+  dbms_output.put_line(num); 
+END;
+/
+
+DECLARE
+ 
+   num1 int :=10;
+   num2 int:=0;
+   num3 int;
+BEGIN 
+  num3:= num1/num2;
+   dbms_output.put_line('division = '||num3);  
+   EXCEPTION
+   when ZERO_DIVIDE then
+      dbms_output.put_line('Divide by zero EXCEPTION'); 
+  
+END;
+/
+
+======================if=================
+DECLARE
+  age int:= 12; 
+BEGIN 
+  IF age > 18 then
+      dbms_output.put_line('Eligible'); 
+  else
+    dbms_output.put_line('Not Eligible'); 
+  END IF;  
+END;
+/
+================else if ladder===============
+DECLARE
+  per float := 75; 
+BEGIN 
+  case
+     when (per  >= 85) then
+      dbms_output.put_line('first class'); 
+    when(per <85 and per>=75) then
+      dbms_output.put_line('sec class'); 
+    when(per <75 and per>65) then
+    dbms_output.put_line('third class');
+    else
+      dbms_output.put_line('fail class'); 
+  END case;  
+END;
+/
+==============while loop===============
+DECLARE
+  num int  := 25; 
+   i int:= 1;
+BEGIN 
+      while i <=10 loop
+        dbms_output.put_line(num || '*' || i || '='|| num*i); 
+        i:=i+1;
+        end loop;
+END;
+/
+================for loop============
+DECLARE
+  num int  := 25; 
+   i int:= 1;
+BEGIN 
+      for i in 1..10 loop
+        dbms_output.put_line(num || '*' || i || '='|| num*i); 
+        -- i:=i+1;
+        end loop;
+END;
+/
+
+
+
+DELIMITER $$
+CREATE PROCEDURE cursorExample
+
+DECLARE 
+salary int ;
+empid int ;
+isDone int DEFAULT 0;
+
+CURSOR empcur for
+	SELECT Empid, Salary from employee;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET isDone = 1;
+
+    
+BEGIN
+open empcur
+getemp LOOP 
+FETCH empcur into Empid,Salary;
+
+if  isDone = 1 THEN
+    LEAVE getemp
+    
+    UPDATE employee set salary=Salary * 1.5 where empid =Empid;
+end loop getemp;
+CLOSE empcur;
+end if;   
+
+END$$
+
+DELIMITER ;
+
+=========================new=================
+
+DELIMITER $$
+CREATE PROCEDURE cursorExample()
+BEGIN
+DECLARE salary int;
+DECLARE empid int;
+DECLARE isDone int DEFAULT 0;
+
+DECLARE empcur CURSOR  for SELECT Empid, Salary from employee;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET isDone = 1;
+
+    
+
+open empcur;
+getemp: LOOP 
+FETCH empcur into Empid,Salary;
+
+if  isDone = 1 THEN
+    LEAVE getemp;
+end if;
+
+    UPDATE employee set salary=Salary * 1.5 where empid =Empid;
+end loop getemp;
+CLOSE empcur;
+   
+
+END$$
+
+DELIMITER ;
+

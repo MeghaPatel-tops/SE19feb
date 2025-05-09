@@ -27,3 +27,33 @@ INSERT INTO `emp_project` (`epid`, `empid`, `pid`, `assigndate`) VALUES (NULL, '
 
 
 
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE cursorExample123()
+BEGIN
+    DECLARE id INT;
+    DECLARE empSalary int;
+    DECLARE is_done INT DEFAULT 0;
+
+    DECLARE empSalaryChange CURSOR FOR SELECT empid, salary FROM employee;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET is_done = 1;
+
+    OPEN empSalaryChange;
+
+    get_emp: LOOP
+        FETCH empSalaryChange INTO id, empSalary;
+
+        IF is_done = 1 THEN
+            LEAVE get_emp;
+        END IF;
+
+        UPDATE employee SET salary = empSalary * 1.1 WHERE empid = id;
+    END LOOP get_emp;
+
+    CLOSE empSalaryChange;
+END$$
+
+DELIMITER ;

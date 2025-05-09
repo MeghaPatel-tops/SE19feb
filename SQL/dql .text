@@ -66,3 +66,4 @@ SELECT sum(OPENING_AMT) as total_amt,CUST_CITY FROM `customer` GROUP BY CUST_CIT
 SELECT sum(OPENING_AMT) as total_amt,CUST_CITY FROM `customer` GROUP BY CUST_CITY HAVING  total_amt>7000;
 
 SELECT sum(OPENING_AMT) as totalsalary FROM `customer` where CUST_CITY ="Mumbai" GROUP BY CUST_CITY;
+
